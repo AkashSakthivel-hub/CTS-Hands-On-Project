@@ -1,0 +1,60 @@
+<div 
+  class="course-card" 
+  *ngIf="course" 
+  [ngClass]="cardClasses" 
+  [ngStyle]="borderStyle"
+  appHighlight="lightyellow">
+  
+  <div class="card-header">
+    <h3>{{ course.name }}</h3>
+    <span class="course-code">{{ course.code }}</span>
+  </div>
+  
+  <!-- Task 1: *ngSwitch for grade status badges -->
+  <div class="badge-container" [ngSwitch]="course.gradeStatus">
+    <span *ngSwitchCase="'passed'" class="badge badge-passed">✓ Passed</span>
+    <span *ngSwitchCase="'failed'" class="badge badge-failed">✗ Failed</span>
+    <span *ngSwitchCase="'pending'" class="badge badge-pending">⧖ Pending</span>
+    <span *ngSwitchDefault class="badge badge-default">Unknown</span>
+  </div>
+  
+  <div class="card-body">
+    <div class="course-detail">
+      <label>Course Code:</label>
+      <p>{{ course.code }}</p>
+    </div>
+    
+    <div class="course-detail">
+      <label>Credits:</label>
+      <!-- Task 3: Custom pipe for credit label -->
+      <p>{{ course.credits | creditLabel }}</p>
+    </div>
+    
+    <div class="course-detail">
+      <label>Status:</label>
+      <p>{{ course.isEnrolled ? 'Enrolled' : 'Not Enrolled' }}</p>
+    </div>
+    
+    <div class="course-detail">
+      <label>Course #:</label>
+      <p>{{ index + 1 }}</p>
+    </div>
+    
+    <!-- Expanded section - shown when isExpanded is true -->
+    <div class="details-section" *ngIf="isExpanded">
+      <hr>
+      <p><strong>Additional Information:</strong></p>
+      <p>This course has {{ course.credits }} credit{{ course.credits === 1 ? '' : 's' }}.</p>
+      <p>Grade Status: {{ course.gradeStatus | uppercase }}</p>
+    </div>
+  </div>
+  
+  <div class="card-footer">
+    <button (click)='toggleDetails()' class="btn btn-details">
+      {{ isExpanded ? 'Hide Details' : 'Show Details' }}
+    </button>
+    <button (click)='onEnroll()' class="btn btn-enroll">
+      Enroll in this Course
+    </button>
+  </div>
+</div>
