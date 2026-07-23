@@ -1,0 +1,58 @@
+<div class="home-container">
+  <!-- Task 1: All Four Binding Types -->
+  
+  <!-- 1. String Interpolation -->
+  <h1>{{ portalName }}</h1>
+  
+  <!-- Welcome section -->
+  <div class="welcome-section">
+    <p class="welcome-text">Welcome to the Student Course Portal. Explore thousands of courses and advance your skills.</p>
+  </div>
+  
+  <!-- 2. Property Binding - Button disabled state -->
+  <div class="binding-section">
+    <h2>Binding Types Demo</h2>
+    
+    <!-- Property Binding Example -->
+    <div class="demo-card">
+      <h3>Property Binding</h3>
+      <p>Button is <strong>{{ isPortalActive ? 'enabled' : 'disabled' }}</strong></p>
+      <button 
+        [disabled]='!isPortalActive' 
+        class="btn btn-primary">
+        Enroll Now
+      </button>
+    </div>
+  </div>
+  
+  <!-- 3. Event Binding - Button click handler -->
+  <div class="demo-card">
+    <h3>Event Binding</h3>
+    <button 
+      (click)='onEnrollClick()' 
+      class="btn btn-secondary">
+      Click to Enroll
+    </button>
+    <p *ngIf='message' class="message">{{ message }}</p>
+  </div>
+  
+  <!-- 4. Two-Way Binding - ngModel -->
+  <div class="demo-card">
+    <h3>Two-Way Binding</h3>
+    <label for="search">Search Courses:</label>
+    <input 
+      id="search"
+      [(ngModel)]='searchTerm' 
+      placeholder='Search courses...'
+      class="search-input">
+    <p class="search-result">Searching for: <strong>{{ searchTerm }}</strong></p>
+  </div>
+  
+  <!-- Info section -->
+  <div class="info-section">
+    <div class="info-card">
+      <h4>Portal Status</h4>
+      <p>Total Available Courses: {{ coursesCount }}</p>
+    </div>
+  </div>
+</div>

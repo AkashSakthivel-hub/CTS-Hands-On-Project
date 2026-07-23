@@ -1,0 +1,25 @@
+<div class="course-list-container">
+  <h1>Available Courses</h1>
+  
+  <div class="courses-grid">
+    <app-course-card 
+      *ngFor='let course of courses' 
+      [course]='course'
+      (enrollRequested)='onEnroll($event)'>
+    </app-course-card>
+  </div>
+  
+  <!-- Selected course display -->
+  <div class="selected-course-section" *ngIf='selectedCourseId'>
+    <p class="selected-message">
+      Selected course ID: <strong>{{ selectedCourseId }}</strong>
+    </p>
+  </div>
+  
+  <!-- No selection message -->
+  <div class="no-selection-section" *ngIf='!selectedCourseId'>
+    <p class="no-selection-message">
+      Click "Enroll in this Course" on any course to select it
+    </p>
+  </div>
+</div>

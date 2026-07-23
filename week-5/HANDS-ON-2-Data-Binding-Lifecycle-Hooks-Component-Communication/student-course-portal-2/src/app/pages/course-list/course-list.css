@@ -1,0 +1,65 @@
+.course-list-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  color: #2c3e50;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  border-bottom: 3px solid #3498db;
+  padding-bottom: 15px;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  .courses-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.selected-course-section {
+  background: #d5f4e6;
+  border: 2px solid #27ae60;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.selected-message {
+  margin: 0;
+  color: #27ae60;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.selected-message strong {
+  color: #c0392b;
+  font-size: 1.4rem;
+}
+
+.no-selection-section {
+  background: #fef5e7;
+  border: 2px solid #f39c12;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.no-selection-message {
+  margin: 0;
+  color: #d68910;
+  font-size: 1.1rem;
+  font-weight: 500;
+}

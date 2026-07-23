@@ -1,0 +1,29 @@
+<div class="course-card" *ngIf="course">
+  <div class="card-header">
+    <h3>{{ course.name }}</h3>
+    <span class="course-code">{{ course.code }}</span>
+  </div>
+  
+  <div class="card-body">
+    <div class="course-detail">
+      <label>Course Code:</label>
+      <p>{{ course.code }}</p>
+    </div>
+    
+    <div class="course-detail">
+      <label>Credits:</label>
+      <p>{{ course.credits }}</p>
+    </div>
+    
+    <div class="course-detail">
+      <label>Course ID:</label>
+      <p>{{ course.id }}</p>
+    </div>
+  </div>
+  
+  <div class="card-footer">
+    <button (click)='onEnroll()' class="btn btn-enroll">
+      Enroll in this Course
+    </button>
+  </div>
+</div>
