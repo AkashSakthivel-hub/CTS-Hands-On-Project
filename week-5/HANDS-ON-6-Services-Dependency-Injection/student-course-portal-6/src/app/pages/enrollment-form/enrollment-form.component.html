@@ -1,0 +1,142 @@
+<div class="enrollment-container">
+  <h2>Student Enrollment Request Form</h2>
+  
+  <div *ngIf="submitted" class="success-message">
+    Enrollment request submitted successfully!
+  </div>
+
+  <form #enrollForm="ngForm" (ngSubmit)="onSubmit(enrollForm)">
+    
+    <!-- Student Name Field -->
+    <div class="form-group">
+      <label for="studentName">Student Name:</label>
+      <input
+        type="text"
+        id="studentName"
+        name="studentName"
+        [(ngModel)]="studentName"
+        #nameCtrl="ngModel"
+        required
+        minlength="3"
+        class="form-control"
+      />
+      <div class="error-messages" *ngIf="nameCtrl.invalid && nameCtrl.touched">
+        <small *ngIf="nameCtrl.errors?.['required']" class="error">
+          Name is required
+        </small>
+        <small *ngIf="nameCtrl.errors?.['minlength']" class="error">
+          Name must be at least 3 characters
+        </small>
+      </div>
+    </div>
+
+    <!-- Student Email Field -->
+    <div class="form-group">
+      <label for="studentEmail">Student Email:</label>
+      <input
+        type="email"
+        id="studentEmail"
+        name="studentEmail"
+        [(ngModel)]="studentEmail"
+        #emailCtrl="ngModel"
+        required
+        email
+        class="form-control"
+      />
+      <div class="error-messages" *ngIf="emailCtrl.invalid && emailCtrl.touched">
+        <small *ngIf="emailCtrl.errors?.['required']" class="error">
+          Email is required
+        </small>
+        <small *ngIf="emailCtrl.errors?.['email']" class="error">
+          Please enter a valid email address
+        </small>
+      </div>
+    </div>
+
+    <!-- Course ID Field -->
+    <div class="form-group">
+      <label for="courseId">Course ID:</label>
+      <input
+        type="number"
+        id="courseId"
+        name="courseId"
+        [(ngModel)]="courseId"
+        #courseCtrl="ngModel"
+        required
+        class="form-control"
+      />
+      <div class="error-messages" *ngIf="courseCtrl.invalid && courseCtrl.touched">
+        <small *ngIf="courseCtrl.errors?.['required']" class="error">
+          Course ID is required
+        </small>
+      </div>
+    </div>
+
+    <!-- Preferred Semester Field -->
+    <div class="form-group">
+      <label for="preferredSemester">Preferred Semester:</label>
+      <select
+        id="preferredSemester"
+        name="preferredSemester"
+        [(ngModel)]="preferredSemester"
+        #semesterCtrl="ngModel"
+        required
+        class="form-control"
+      >
+        <option value="">-- Select Semester --</option>
+        <option value="Odd">Odd</option>
+        <option value="Even">Even</option>
+      </select>
+      <div class="error-messages" *ngIf="semesterCtrl.invalid && semesterCtrl.touched">
+        <small *ngIf="semesterCtrl.errors?.['required']" class="error">
+          Preferred Semester is required
+        </small>
+      </div>
+    </div>
+
+    <!-- Agree to Terms Checkbox -->
+    <div class="form-group checkbox-group">
+      <label>
+        <input
+          type="checkbox"
+          name="agreeToTerms"
+          [(ngModel)]="agreeToTerms"
+          #termsCtrl="ngModel"
+          required
+        />
+        I agree to the terms and conditions
+      </label>
+      <div class="error-messages" *ngIf="termsCtrl.invalid && termsCtrl.touched">
+        <small *ngIf="termsCtrl.errors?.['required']" class="error">
+          You must agree to the terms and conditions
+        </small>
+      </div>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+      <button 
+        type="submit" 
+        class="btn btn-primary"
+        [disabled]="enrollForm.invalid"
+      >
+        Submit
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-secondary"
+        (click)="enrollForm.resetForm()"
+      >
+        Reset
+      </button>
+    </div>
+
+    <!-- Debug Info (optional - can be removed) -->
+    <div class="debug-info" *ngIf="!enrollForm.pristine">
+      <p><strong>Form Status:</strong></p>
+      <p>Valid: {{ enrollForm.valid }}</p>
+      <p>Touched: {{ enrollForm.touched }}</p>
+      <p>Dirty: {{ enrollForm.dirty }}</p>
+    </div>
+  </form>
+</div>

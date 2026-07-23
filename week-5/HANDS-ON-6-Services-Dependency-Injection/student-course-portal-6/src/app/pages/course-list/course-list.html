@@ -1,0 +1,36 @@
+<div class="course-list-container">
+  <h1>Available Courses</h1>
+  
+  <!-- Task 1: *ngIf - Show loading message -->
+  <div *ngIf="isLoading" class="loading-section">
+    <p class="loading-text">Loading courses...</p>
+    <div class="spinner"></div>
+  </div>
+  
+  <!-- Task 1: *ngIf with else - Show courses when loaded, otherwise show no-courses template -->
+  <div *ngIf="!isLoading">
+    <div *ngIf="courses.length > 0; else noCourses" class="courses-grid">
+      <!-- Task 1: *ngFor with index and trackBy -->
+      <app-course-card 
+        *ngFor='let course of courses; let i = index; trackBy: trackByCourseId' 
+        [course]='course'
+        [index]='i'
+        (enrollRequested)='onEnroll($event)'>
+      </app-course-card>
+    </div>
+    
+    <!-- Task 1: ng-template for else block -->
+    <ng-template #noCourses>
+      <div class="no-courses-section">
+        <p class="no-courses-message">No courses available.</p>
+      </div>
+    </ng-template>
+    
+    <!-- Selected course display -->
+    <div class="selected-course-section" *ngIf='selectedCourseId'>
+      <p class="selected-message">
+        Selected course ID: <strong>{{ selectedCourseId }}</strong>
+      </p>
+    </div>
+  </div>
+</div>
