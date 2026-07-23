@@ -1,0 +1,84 @@
+NgRx Store Structure
+====================
+
+src/app/
+├── store/
+│   ├── course/
+│   │   ├── course.actions.ts      ← Action creators
+│   │   ├── course.state.ts        ← State interface
+│   │   ├── course.reducer.ts      ← Pure functions for state updates
+│   │   ├── course.selectors.ts    ← Memoized state queries
+│   │   └── course.effects.ts      ← Side effects (HTTP calls)
+│   │
+│   └── enrollment/
+│       ├── enrollment.actions.ts
+│       ├── enrollment.state.ts
+│       ├── enrollment.reducer.ts
+│       ├── enrollment.selectors.ts
+│       └── enrollment.effects.ts
+│
+├── models/
+│   └── course.model.ts
+│
+├── services/
+│   └── course.service.ts          ← HTTP service (used by effects)
+│
+├── components/
+│   ├── course-list/
+│   │   ├── course-list.component.ts    ← Dispatches actions, selects from store
+│   │   └── course-list.component.html  ← Uses async pipe
+│   │
+│   └── course-card/
+│       ├── course-card.component.ts
+│       └── course-card.component.html
+│
+└── app.config.ts                  ← NgRx providers
+
+NgRx Flow
+=========
+
+1. Component dispatches action:
+   this.store.dispatch(loadCourses())
+
+2. Effect listens for action:
+   loadCourses$ effect → HTTP call
+
+3. Effect dispatches success/failure action:
+   loadCoursesSuccess({ courses }) or loadCoursesFailure({ error })
+
+4. Reducer updates state (immutable):
+   { ...state, courses, loading: false }
+
+5. Selector emits new value:
+   selectAllCourses → courses array
+
+6. Component receives via async pipe:
+   courses$ | async
+
+Key Principles
+==============
+
+Actions:
+- Describe events (past tense: "Courses Loaded")
+- Contain minimal data (no transformation)
+- Tagged with feature prefix: [Course]
+
+Reducers:
+- Pure functions (no side effects)
+- Immutable state updates (spread operator)
+- Handle one action at a time
+
+Selectors:
+- Memoized (performance optimization)
+- Composable (build complex from simple)
+- Encapsulate state shape
+
+Effects:
+- ONLY place for side effects
+- Listen to actions, perform async work
+- Dispatch new actions with results
+
+State:
+- Single source of truth
+- Immutable (never mutate directly)
+- Normalized (avoid duplication)

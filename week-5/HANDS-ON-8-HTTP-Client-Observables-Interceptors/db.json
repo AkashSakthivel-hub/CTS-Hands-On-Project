@@ -1,0 +1,63 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "name": "Introduction to Computer Science",
+      "code": "CS101",
+      "credits": 4,
+      "gradeStatus": "passed"
+    },
+    {
+      "id": 2,
+      "name": "Data Structures and Algorithms",
+      "code": "CS201",
+      "credits": 4,
+      "gradeStatus": "pending"
+    },
+    {
+      "id": 3,
+      "name": "Database Management Systems",
+      "code": "CS301",
+      "credits": 3,
+      "gradeStatus": "passed"
+    },
+    {
+      "id": 4,
+      "name": "Web Development",
+      "code": "WEB201",
+      "credits": 3,
+      "gradeStatus": "pending"
+    },
+    {
+      "id": 5,
+      "name": "Software Engineering",
+      "code": "SE301",
+      "credits": 4,
+      "gradeStatus": "failed"
+    }
+  ],
+  "students": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@example.com"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "jane@example.com"
+    }
+  ],
+  "enrollments": [
+    {
+      "id": 1,
+      "studentId": 1,
+      "courseId": 1
+    },
+    {
+      "id": 2,
+      "studentId": 1,
+      "courseId": 3
+    }
+  ]
+}
